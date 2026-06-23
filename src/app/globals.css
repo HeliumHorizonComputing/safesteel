@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0c0f;
+  --foreground: #e6edf3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Technical grid backdrop helper */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(110, 118, 129, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(110, 118, 129, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Mono label used for technical callouts */
+.tech-label {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
