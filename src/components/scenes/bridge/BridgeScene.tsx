@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 import { buildTruss, Member } from "./truss";
 import CameraDirector from "../CameraDirector";
+import HeroAnnotations from "./HeroAnnotations";
 import { easeOutCubic, smoothstep, lerp, clamp } from "@/lib/anim";
 
 const BG = "#0a0c0f"; // surfaces match the page background
@@ -104,6 +105,9 @@ export default function BridgeScene({
             </lineSegments>
           </group>
         ))}
+
+        {/* engineering force annotations — fade in once the truss stands */}
+        <HeroAnnotations progress={progress} />
       </group>
     </>
   );
