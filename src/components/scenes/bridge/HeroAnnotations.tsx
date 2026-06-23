@@ -126,12 +126,13 @@ export default function HeroAnnotations({
           style={{ pointerEvents: "none" }}
         >
           <div
-            className={`whitespace-nowrap border bg-steel-950/75 px-1.5 py-0.5 font-mono text-[10px] leading-none tracking-tight backdrop-blur-sm transition-all duration-500 ${toneClass(
+            className={`whitespace-nowrap border bg-steel-950/90 px-2.5 py-1 font-mono text-[13px] font-medium leading-none tracking-tight shadow-lg shadow-black/60 backdrop-blur-sm transition-all duration-500 ${toneClass(
               l.tone,
             )}`}
             style={{
               opacity: show ? 1 : 0,
-              transform: show ? "translateY(0)" : "translateY(4px)",
+              transform: show ? "scale(1)" : "scale(0.85)",
+              transformOrigin: "center",
               transitionDelay: `${i * 45}ms`,
             }}
           >
