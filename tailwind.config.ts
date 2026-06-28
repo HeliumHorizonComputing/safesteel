@@ -7,17 +7,17 @@ const config: Config = {
       colors: {
         // Brand palette taken from the Safe Steels brochure
         navy: {
-          50: "#eef3fb",
-          100: "#dbe5f6",
-          200: "#b3c6ec",
-          300: "#84a1de",
-          400: "#4f74c9",
-          500: "#2a51ad",
-          600: "#1e46a4", // royal blue accents
-          700: "#1b3f93", // primary brochure blue
-          800: "#16357a",
-          900: "#112a63",
-          950: "#0c1c45",
+          50: "#eff5ff",
+          100: "#dbe8fe",
+          200: "#bdd5fd",
+          300: "#90b8fb",
+          400: "#5d93f6",
+          500: "#3a72ef",
+          600: "#2456e3", // vibrant royal accents
+          700: "#1e4ed1", // primary brand blue (lighter, more vibrant)
+          800: "#1d44ad",
+          900: "#1c3c8f",
+          950: "#162e6b",
         },
         orange: {
           50: "#fef5e8",
