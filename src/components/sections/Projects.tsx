@@ -75,10 +75,10 @@ export default function Projects() {
   return (
     <section id="projects" className="relative overflow-hidden bg-navy-900 py-24 md:py-32">
       <div className="tech-grid-dark pointer-events-none absolute inset-0 opacity-60" />
-      {/* orange diagonal accent */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rotate-45 bg-orange-500/10" />
+      {/* solid orange corner accent — above the grid (no pattern shows through), below content */}
+      <div className="pointer-events-none absolute -right-28 -top-28 z-[1] h-56 w-56 rotate-45 bg-orange-500" />
 
-      <div className="relative mx-auto max-w-7xl px-6 md:px-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="eyebrow mb-2 text-[12px] text-orange-400">
