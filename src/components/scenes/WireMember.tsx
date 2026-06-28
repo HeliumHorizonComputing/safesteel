@@ -5,9 +5,10 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 import { easeOutCubic, smoothstep } from "@/lib/anim";
+import { SCENE } from "@/lib/theme";
 
-const BG = "#0a0c0f";
-const EDGE = "#ffffff";
+const BG = SCENE.surface;
+const EDGE = SCENE.edge;
 
 /**
  * A single skeleton-wireframe member: white edges over a background-filled

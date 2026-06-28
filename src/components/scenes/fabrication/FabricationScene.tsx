@@ -5,9 +5,10 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 import Particles from "../Particles";
-import CameraDirector from "../CameraDirector";
+import SceneControls from "../SceneControls";
 import WireMember from "../WireMember";
 import { easeOutCubic, smoothstep, lerp, clamp } from "@/lib/anim";
+import { SCENE } from "@/lib/theme";
 
 // A built-up plate girder assembled from web + flanges + stiffeners — the
 // bread-and-butter of structural fabrication, welded together automatically.
@@ -52,8 +53,10 @@ const bump = (p: number, a: number, b: number) => {
 
 export default function FabricationScene({
   progress,
+  hovered,
 }: {
   progress: MotionValue<number>;
+  hovered: MotionValue<number>;
 }) {
   const parts = useMemo(buildParts, []);
   const geoms = useMemo(
@@ -75,24 +78,23 @@ export default function FabricationScene({
     [],
   );
 
-  useFrame((state) => {
+  useFrame(() => {
     const p = progress.get();
     if (rootRef.current) {
-      const reveal = lerp(-0.35, 0.3, easeOutCubic(clamp(p)));
-      const idle = p > 0.97 ? Math.sin(state.clock.elapsedTime * 0.2) * 0.05 : 0;
-      rootRef.current.rotation.y = reveal + idle;
+      rootRef.current.rotation.y = lerp(-0.35, 0.3, easeOutCubic(clamp(p)));
     }
   });
 
   return (
     <>
-      <CameraDirector
+      <SceneControls
         progress={progress}
+        hovered={hovered}
         target={[0, 1, 0]}
         from={[3.5, 2.2, 9]}
         to={[2.2, 1.8, 7.5]}
       />
-      <fog attach="fog" args={["#0a0c0f", 14, 34]} />
+      <fog attach="fog" args={[SCENE.fog, 16, 40]} />
 
       <group ref={rootRef}>
         {parts.map((pt, i) => (
@@ -107,10 +109,10 @@ export default function FabricationScene({
           />
         ))}
 
-        {/* welding flash — monochrome white spatter at the seams */}
-        <Particles seams={topSeam} progress={progress} intensity={(p) => bump(p, 0.3, 0.52)} count={90} color="#ffffff" size={0.06} />
-        <Particles seams={botSeam} progress={progress} intensity={(p) => bump(p, 0.3, 0.52)} count={90} color="#ffffff" size={0.06} />
-        <Particles seams={stiffSeam} progress={progress} intensity={(p) => bump(p, 0.5, 0.74)} count={70} color="#ffffff" size={0.06} />
+        {/* welding flash — orange spatter at the seams */}
+        <Particles seams={topSeam} progress={progress} intensity={(p) => bump(p, 0.3, 0.52)} count={90} color={SCENE.accent} size={0.06} />
+        <Particles seams={botSeam} progress={progress} intensity={(p) => bump(p, 0.3, 0.52)} count={90} color={SCENE.accent} size={0.06} />
+        <Particles seams={stiffSeam} progress={progress} intensity={(p) => bump(p, 0.5, 0.74)} count={70} color={SCENE.accent} size={0.06} />
       </group>
     </>
   );

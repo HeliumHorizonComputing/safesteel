@@ -5,17 +5,20 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 import { buildTruss, Member } from "./truss";
-import CameraDirector from "../CameraDirector";
+import SceneControls from "../SceneControls";
 import HeroAnnotations from "./HeroAnnotations";
 import { easeOutCubic, smoothstep, lerp, clamp } from "@/lib/anim";
+import { SCENE } from "@/lib/theme";
 
-const BG = "#0a0c0f"; // surfaces match the page background
-const EDGE = "#ffffff"; // skeleton edge color
+const BG = SCENE.surface; // surfaces match the light canvas background
+const EDGE = SCENE.edge; // navy blueprint edge color
 
 export default function BridgeScene({
   progress,
+  hovered,
 }: {
   progress: MotionValue<number>;
+  hovered: MotionValue<number>;
 }) {
   const members = useMemo<Member[]>(() => buildTruss(), []);
   const geoms = useMemo(
@@ -32,7 +35,7 @@ export default function BridgeScene({
   const lineMatRefs = useRef<(THREE.LineBasicMaterial | null)[]>([]);
   const rootRef = useRef<THREE.Group>(null);
 
-  useFrame((state) => {
+  useFrame(() => {
     const p = progress.get();
 
     for (let i = 0; i < members.length; i++) {
@@ -54,23 +57,22 @@ export default function BridgeScene({
     }
 
     if (rootRef.current) {
-      const reveal = lerp(-0.5, 0.08, easeOutCubic(clamp(p)));
-      const idle =
-        p > 0.98 ? Math.sin(state.clock.elapsedTime * 0.16) * 0.05 : 0;
-      rootRef.current.rotation.y = reveal + idle;
+      // settles to a fixed reveal angle by p=1; OrbitControls takes over after.
+      rootRef.current.rotation.y = lerp(-0.5, 0.08, easeOutCubic(clamp(p)));
     }
   });
 
   return (
     <>
-      <CameraDirector
+      <SceneControls
         progress={progress}
+        hovered={hovered}
         target={[0, 0.8, 0]}
         from={[7, 4.6, 15.5]}
         to={[7, 3.6, 12.8]}
         baseAspect={1.6}
       />
-      <fog attach="fog" args={[BG, 16, 52]} />
+      <fog attach="fog" args={[SCENE.fog, 18, 60]} />
 
       <group ref={rootRef} scale={0.72}>
         {members.map((m, i) => (

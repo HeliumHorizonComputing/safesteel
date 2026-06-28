@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0c0f;
-  --foreground: #e6edf3;
+  --background: #ffffff;
+  --foreground: #0f1d3d;
+  /* Must stay in sync with SCENE.surface in src/lib/theme.ts */
+  --scene-surface: #eef3fb;
 }
 
 * {
@@ -19,20 +21,68 @@ body {
   background: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
-/* Technical grid backdrop helper */
+/* Canvas frame background — kept identical to the scene fill color so the
+   skeleton members' filled faces are invisible and only edges read. */
+.scene-surface {
+  background-color: var(--scene-surface);
+}
+
+/* Faint engineering grid backdrop for light sections */
 .tech-grid {
   background-image:
-    linear-gradient(to right, rgba(110, 118, 129, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(110, 118, 129, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(27, 63, 147, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 63, 147, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Mono label used for technical callouts */
+/* Blueprint grid used inside / behind 3D frames */
+.blueprint-grid {
+  background-color: var(--scene-surface);
+  background-image:
+    linear-gradient(to right, rgba(27, 63, 147, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 63, 147, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Grid on a navy panel */
+.tech-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Mono technical label */
 .tech-label {
   font-family: var(--font-mono), monospace;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+/* Condensed display eyebrow (brochure-style) */
+.eyebrow {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Orange accent rule used under brochure headings */
+.accent-rule::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  background: #f7941d;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+/* Diagonal chevron corner accent reminiscent of the brochure's cut shapes */
+.clip-chevron {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 12% 50%);
 }

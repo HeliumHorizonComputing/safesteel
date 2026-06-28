@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { MotionValue, useMotionValueEvent } from "framer-motion";
 import { smoothstep } from "@/lib/anim";
 import { BRIDGE } from "./truss";
+import { SCENE } from "@/lib/theme";
 
 /*
  * Structural-analysis markup for the hero truss. Numbers are a self-consistent
@@ -20,7 +21,7 @@ import { BRIDGE } from "./truss";
  *   D   = V / sin45° = 270 / 0.707 ≈ 382 kN   (end diagonal)
  */
 
-const ACCENT = "#7dd3fc";
+const ACCENT = SCENE.compression; // navy dimension / load lines
 const SPAN = BRIDGE.SPAN;
 const H = BRIDGE.H;
 const X0 = -SPAN / 2;
@@ -48,9 +49,9 @@ const LABELS: Label[] = [
 ];
 
 function toneClass(tone: Tone) {
-  if (tone === "tension") return "text-zinc-accent border-zinc-accent/50";
-  if (tone === "compression") return "text-white border-steel-500";
-  return "text-steel-100 border-steel-600";
+  if (tone === "tension") return "text-orange-600 border-orange-400/70";
+  if (tone === "compression") return "text-navy-800 border-navy-400/60";
+  return "text-ink-soft border-navy-200";
 }
 
 /** Builds the cyan dimension line + uniform-load arrows as one line geometry. */
@@ -126,7 +127,7 @@ export default function HeroAnnotations({
           style={{ pointerEvents: "none" }}
         >
           <div
-            className={`whitespace-nowrap border bg-steel-950/90 px-2.5 py-1 font-mono text-[13px] font-medium leading-none tracking-tight shadow-lg shadow-black/60 backdrop-blur-sm transition-all duration-500 ${toneClass(
+            className={`whitespace-nowrap rounded border bg-white/92 px-2.5 py-1 font-mono text-[13px] font-medium leading-none tracking-tight shadow-md shadow-navy-900/15 backdrop-blur-sm transition-all duration-500 ${toneClass(
               l.tone,
             )}`}
             style={{

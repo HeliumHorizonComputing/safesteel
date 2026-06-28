@@ -16,7 +16,10 @@ interface ProcessSectionProps {
   description: string;
   phases: Phase[];
   specs: { k: string; v: string }[];
-  scene: ComponentType<{ progress: MotionValue<number> }>;
+  scene: ComponentType<{
+    progress: MotionValue<number>;
+    hovered: MotionValue<number>;
+  }>;
   align?: "left" | "right";
   camera?: { position: [number, number, number]; fov?: number };
   duration?: number;
@@ -55,31 +58,31 @@ function TextPanel({
 
   return (
     <div className="max-w-md">
-      <p className="tech-label mb-4 text-[11px] text-zinc-accent">{kicker}</p>
-      <h2 className="text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.02] tracking-tight text-white">
+      <p className="eyebrow mb-3 text-[12px] text-orange-600">{kicker}</p>
+      <h2 className="font-display text-[clamp(2.25rem,5vw,3.5rem)] font-bold uppercase leading-[1.02] tracking-tight text-navy-800">
         {title}
       </h2>
-      <p className="mt-5 text-base leading-relaxed text-steel-300">
+      <p className="mt-5 text-base leading-relaxed text-ink-soft">
         {description}
       </p>
 
-      <div className="mt-9 border-t border-steel-800 pt-5">
+      <div className="mt-9 border-t border-navy-200 pt-5">
         <div className="mb-3 flex items-center justify-between">
-          <span className="tech-label text-[10px] text-steel-400">
+          <span className="tech-label text-[10px] text-ink-muted">
             Auto-Sequence
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-accent">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-orange-600">
             {phase}
           </span>
         </div>
         <div className="flex items-end gap-4">
-          <span className="font-mono text-3xl tabular-nums leading-none text-white">
+          <span className="font-mono text-3xl tabular-nums leading-none text-navy-800">
             {String(pct).padStart(3, "0")}
-            <span className="text-base text-steel-500">%</span>
+            <span className="text-base text-ink-muted">%</span>
           </span>
-          <div className="mb-1 h-px flex-1 bg-steel-700">
+          <div className="mb-1 h-1 flex-1 rounded-full bg-navy-100">
             <div
-              className="h-px bg-zinc-accent transition-[width] duration-150"
+              className="h-1 rounded-full bg-orange-500 transition-[width] duration-150"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -88,8 +91,8 @@ function TextPanel({
         <dl className="mt-7 grid grid-cols-2 gap-x-8 gap-y-3 font-mono text-xs">
           {specs.map((s) => (
             <div key={s.k} className="flex flex-col gap-1">
-              <dt className="text-steel-500">{s.k}</dt>
-              <dd className="text-steel-100">{s.v}</dd>
+              <dt className="text-ink-muted">{s.k}</dt>
+              <dd className="font-semibold text-navy-800">{s.v}</dd>
             </div>
           ))}
         </dl>
@@ -120,7 +123,9 @@ export default function ProcessSection({
       figure={figure}
       className={className}
       camera={camera}
-      scene={({ progress }) => <Scene progress={progress} />}
+      scene={({ progress, hovered }) => (
+        <Scene progress={progress} hovered={hovered} />
+      )}
       text={({ progress }) => (
         <TextPanel
           progress={progress}
