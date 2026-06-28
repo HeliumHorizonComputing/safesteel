@@ -35,7 +35,6 @@ export default function Contact() {
       id="contact"
       className="relative overflow-hidden bg-navy-900 py-24 md:py-32"
     >
-      <div className="tech-grid-dark pointer-events-none absolute inset-0 opacity-60" />
       <div className="pointer-events-none absolute -left-28 -top-28 z-[1] h-56 w-56 rotate-45 bg-orange-500" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">

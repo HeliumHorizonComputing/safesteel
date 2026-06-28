@@ -74,7 +74,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative overflow-hidden bg-navy-900 py-24 md:py-32">
-      <div className="tech-grid-dark pointer-events-none absolute inset-0 opacity-60" />
       {/* solid orange corner accent — above the grid (no pattern shows through), below content */}
       <div className="pointer-events-none absolute -right-28 -top-28 z-[1] h-56 w-56 rotate-45 bg-orange-500" />
 
