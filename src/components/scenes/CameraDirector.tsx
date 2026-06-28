@@ -21,6 +21,8 @@ export default function CameraDirector({
   baseAspect = 1.5,
   /** Maximum extra pull-back factor on very narrow canvases. */
   maxFit = 2.1,
+  /** When false, the director stops writing the camera (hands off to orbit). */
+  active = true,
 }: {
   progress: MotionValue<number>;
   target?: [number, number, number];
@@ -28,6 +30,7 @@ export default function CameraDirector({
   to?: [number, number, number];
   baseAspect?: number;
   maxFit?: number;
+  active?: boolean;
 }) {
   const { camera, size } = useThree();
   const tgt = useMemo(() => new THREE.Vector3(...target), [target]);
@@ -36,6 +39,7 @@ export default function CameraDirector({
   const pos = useMemo(() => new THREE.Vector3(), []);
 
   useFrame(() => {
+    if (!active) return;
     if (a && b) {
       pos.lerpVectors(a, b, easeInOutCubic(clamp(progress.get())));
     } else {

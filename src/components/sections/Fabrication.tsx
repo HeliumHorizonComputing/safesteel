@@ -7,7 +7,7 @@ export default function Fabrication() {
   return (
     <ProcessSection
       id="fabrication"
-      className="bg-steel-950"
+      className="bg-white"
       align="left"
       duration={6}
       figure="FIG. 01 — BUILT-UP GIRDER / WELD"

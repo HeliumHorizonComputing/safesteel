@@ -14,9 +14,11 @@ export default function Hero() {
       mobileSceneFirst
       gap="gap-10 lg:gap-20"
       figure="FIG. 00 — PRATT TRUSS / ASSEMBLY"
-      className="bg-steel-950"
+      className="bg-surface-50"
       camera={{ position: [6.5, 4.2, 15], fov: 38 }}
-      scene={({ progress }) => <BridgeScene progress={progress} />}
+      scene={({ progress, hovered }) => (
+        <BridgeScene progress={progress} hovered={hovered} />
+      )}
       text={({ progress }) => <HeroOverlay progress={progress} />}
     />
   );

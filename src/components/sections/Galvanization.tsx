@@ -7,7 +7,7 @@ export default function Galvanization() {
   return (
     <ProcessSection
       id="galvanization"
-      className="bg-steel-900"
+      className="bg-surface-50"
       align="right"
       duration={6}
       figure="FIG. 02 — HOT-DIP / IMMERSION"

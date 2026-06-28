@@ -5,9 +5,10 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 import Particles from "../Particles";
-import CameraDirector from "../CameraDirector";
+import SceneControls from "../SceneControls";
 import WireMember from "../WireMember";
-import { remap, lerp, easeInOutCubic, smoothstep, clamp } from "@/lib/anim";
+import { remap, lerp, easeInOutCubic, smoothstep } from "@/lib/anim";
+import { SCENE } from "@/lib/theme";
 
 // A fabricated braced frame is lowered into the galvanizing bath, dwelled, then
 // withdrawn — all in wireframe. Y-trajectory below drives the dip.
@@ -51,8 +52,10 @@ function buildFrame(): FramePart[] {
 
 export default function GalvanizationScene({
   progress,
+  hovered,
 }: {
   progress: MotionValue<number>;
+  hovered: MotionValue<number>;
 }) {
   const frame = useMemo(buildFrame, []);
   const frameGeoms = useMemo(
@@ -82,8 +85,7 @@ export default function GalvanizationScene({
 
     if (pieceRef.current) {
       pieceRef.current.position.y = dy;
-      pieceRef.current.rotation.y =
-        p > 0.8 ? (p - 0.8) * 2.2 + Math.sin(state.clock.elapsedTime * 0.3) * 0.05 : 0;
+      pieceRef.current.rotation.y = p > 0.8 ? (p - 0.8) * 2.2 : 0;
     }
 
     // cable from a fixed anchor down to the top of the piece
@@ -107,13 +109,14 @@ export default function GalvanizationScene({
 
   return (
     <>
-      <CameraDirector
+      <SceneControls
         progress={progress}
+        hovered={hovered}
         target={[0, 0.4, 0]}
         from={[4.5, 2.6, 8]}
         to={[3.4, 2.1, 7]}
       />
-      <fog attach="fog" args={["#0a0c0f", 14, 34]} />
+      <fog attach="fog" args={[SCENE.fog, 16, 40]} />
 
       {/* galvanizing bath (static wireframe tank) */}
       <WireMember geometry={tankGeom} position={[0, -0.6, 0]} appearAt={0.0} win={0.06} progress={progress} />
@@ -124,7 +127,7 @@ export default function GalvanizationScene({
       {/* cable */}
       <mesh ref={cableRef}>
         <boxGeometry args={[0.03, 1, 0.03]} />
-        <meshBasicMaterial color="#ffffff" />
+        <meshBasicMaterial color={SCENE.edge} />
       </mesh>
 
       {/* the workpiece */}
@@ -149,7 +152,7 @@ export default function GalvanizationScene({
         intensity={(p) => smoothstep(0.3, 0.38, p) * (1 - smoothstep(0.56, 0.7, p))}
         mode="rise"
         count={70}
-        color="#ffffff"
+        color={SCENE.accent}
         size={0.05}
         reach={1.2}
         spread={0.5}
@@ -163,7 +166,7 @@ export default function GalvanizationScene({
         }
         mode="rise"
         count={50}
-        color="#cdd6da"
+        color={SCENE.edgeSoft}
         size={0.12}
         reach={2.6}
         spread={0.9}

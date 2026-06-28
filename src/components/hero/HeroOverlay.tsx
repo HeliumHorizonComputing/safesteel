@@ -42,35 +42,59 @@ export default function HeroOverlay({
 
   return (
     <div className="max-w-xl">
-      <p className="tech-label mb-5 text-[11px] text-zinc-accent">
-        Structural Steel · Engineered
-      </p>
-      <h1 className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[0.95] tracking-tight text-white">
-        SAFE<span className="text-zinc-accent">STEEL</span>
+      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-navy-200 bg-white px-3 py-1.5 shadow-sm">
+        <span className="h-2 w-2 rotate-45 bg-orange-500" />
+        <span className="tech-label text-[10px] text-navy-700">
+          ISO 9001 &amp; 14001 Certified · Est. 2010
+        </span>
+      </div>
+
+      <h1 className="font-display text-[clamp(2.6rem,6vw,5.2rem)] font-bold uppercase leading-[0.92] tracking-tight text-navy-800">
+        Safe<span className="text-orange-500">Steels</span>
       </h1>
-      <p className="mt-6 max-w-md text-base leading-relaxed text-steel-300">
-        We design, fabricate, galvanize and erect structural steel — from truss
-        bridges to industrial facilities. Watch one assemble, member by member.
+      <p className="eyebrow mt-3 text-[clamp(0.8rem,1.6vw,1.05rem)] text-navy-600">
+        Steel Solutions for Nation Building
       </p>
 
+      <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
+        Delivering excellence in design, fabrication, galvanization and erection
+        of steel structures across Nepal — from truss bridges to towers and
+        industrial facilities. Watch one assemble, member by member.
+      </p>
+
+      <div className="mt-8 flex flex-wrap gap-3">
+        <a
+          href="#projects"
+          className="rounded-md bg-orange-500 px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-white shadow-card transition-colors hover:bg-orange-600"
+        >
+          View Projects
+        </a>
+        <a
+          href="#contact"
+          className="rounded-md border border-navy-300 px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-navy-700 transition-colors hover:border-navy-700 hover:bg-navy-50"
+        >
+          Get in Touch
+        </a>
+      </div>
+
       {/* live assembly readout */}
-      <div className="mt-10 max-w-md border-t border-steel-800 pt-6">
+      <div className="mt-10 max-w-md border-t border-navy-200 pt-6">
         <div className="mb-3 flex items-center justify-between">
-          <span className="tech-label text-[10px] text-steel-400">
+          <span className="tech-label text-[10px] text-ink-muted">
             Auto-Assembly · Pratt Truss
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-accent">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-orange-600">
             {phase}
           </span>
         </div>
         <div className="flex items-end gap-4">
-          <span className="font-mono text-4xl tabular-nums leading-none text-white">
+          <span className="font-mono text-4xl tabular-nums leading-none text-navy-800">
             {String(pct).padStart(3, "0")}
-            <span className="text-lg text-steel-500">%</span>
+            <span className="text-lg text-ink-muted">%</span>
           </span>
-          <div className="mb-1 h-px flex-1 bg-steel-700">
+          <div className="mb-1 h-1 flex-1 rounded-full bg-navy-100">
             <div
-              className="h-px bg-zinc-accent transition-[width] duration-150"
+              className="h-1 rounded-full bg-orange-500 transition-[width] duration-150"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -79,8 +103,8 @@ export default function HeroOverlay({
         <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-3 font-mono text-xs sm:grid-cols-4">
           {SPECS.map((s) => (
             <div key={s.k} className="flex flex-col gap-1">
-              <dt className="text-steel-500">{s.k}</dt>
-              <dd className="text-white">{s.v}</dd>
+              <dt className="text-ink-muted">{s.k}</dt>
+              <dd className="font-semibold text-navy-800">{s.v}</dd>
             </div>
           ))}
         </dl>
