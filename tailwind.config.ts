@@ -7,17 +7,17 @@ const config: Config = {
       colors: {
         // Brand palette taken from the Safe Steels brochure
         navy: {
-          50: "#eff5ff",
-          100: "#dbe8fe",
-          200: "#bdd5fd",
-          300: "#90b8fb",
-          400: "#5d93f6",
-          500: "#3a72ef",
-          600: "#2456e3", // vibrant royal accents
-          700: "#1e4ed1", // primary brand blue (lighter, more vibrant)
-          800: "#1d44ad",
-          900: "#1c3c8f",
-          950: "#162e6b",
+          50: "#eef6ff",
+          100: "#d8eafe",
+          200: "#b5d6fd",
+          300: "#84bbfb",
+          400: "#4d9bf6",
+          500: "#2480ec", // vibrant azure
+          600: "#1267d8", // bright royal-blue accents (no violet cast)
+          700: "#1059bd", // primary brand blue
+          800: "#124c9c",
+          900: "#123f7e",
+          950: "#0f2f5e",
         },
         orange: {
           50: "#fef5e8",
@@ -31,9 +31,9 @@ const config: Config = {
           800: "#954e14",
         },
         ink: {
-          DEFAULT: "#0f1d3d", // navy-tinted body text
-          soft: "#3a456b",
-          muted: "#6b7494",
+          DEFAULT: "#0f1d3a", // navy-tinted body text
+          soft: "#3f4a5e", // neutral slate (no violet cast)
+          muted: "#6c7589",
         },
         surface: {
           DEFAULT: "#ffffff",

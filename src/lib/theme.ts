@@ -6,14 +6,14 @@ export const SCENE = {
   /** Occlusion-fill color for member surfaces — matches the canvas frame bg. */
   surface: "#eef3fb",
   /** Primary blueprint edge color. */
-  edge: "#1e4ed1",
+  edge: "#1267d8",
   /** Softer secondary edge (bracing / lighter members). */
-  edgeSoft: "#5d93f6",
+  edgeSoft: "#4d9bf6",
   /** Brand orange — active / highlighted elements, sparks. */
   accent: "#f7941d",
   /** Structural tone colors for annotations. */
   tension: "#e07d10",
-  compression: "#1d44ad",
+  compression: "#124c9c",
   neutral: "#3a456b",
   /** Fog color (same as surface so depth fades to the page). */
   fog: "#eef3fb",
